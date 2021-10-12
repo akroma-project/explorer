@@ -25,14 +25,13 @@
     "core-js": "^2.5.4",
     "ngx-bootstrap": "^3.0.1",
     "ngx-qrcode2": "0.0.9",
-    "pouchdb": "^7.0.0",
     "rxjs": "~6.2.0",
     "typesafe-web3": "0.0.14",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.0",
-    "@angular/cli": "~6.2.1",
+    "@angular/cli": "~7.3.10",
     "@angular/compiler-cli": "^6.1.0",
     "@angular/language-service": "^6.1.0",
     "@types/chai": "^4.1.5",
@@ -40,7 +39,6 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/mocha": "^5.2.5",
     "@types/node": "~8.9.4",
-    "@types/pouchdb": "^6.3.2",
     "chai": "^4.1.2",
     "codelyzer": "~4.3.0",
     "jasmine-core": "~2.99.1",
