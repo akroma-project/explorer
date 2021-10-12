@@ -25,7 +25,8 @@
     "core-js": "^2.5.4",
     "ngx-bootstrap": "^3.0.1",
     "rxjs": "~6.6.7",
-    "typesafe-web3": "0.0.14"
+    "typesafe-web3": "0.0.14",
+    "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.29",
