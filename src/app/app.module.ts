@@ -3,20 +3,20 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { BsDropdownModule, ModalModule, PaginationModule, TabsModule } from 'ngx-bootstrap';
-import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AddressQrcodeComponent } from './components/address-qrcode/address-qrcode.component';
 import { BlocksPanelComponent } from './components/blocks-panel/blocks-panel.component';
 import { BookmarkComponent } from './components/bookmark/bookmark.component';
 import { HeaderComponent } from './components/header/header.component';
-import { SettingsBookmarksComponent } from './components/settings-bookmarks/settings-bookmarks.component';
-import { SettingsConnectionComponent } from './components/settings-connection/settings-connection.component';
 import { TransactionsPanelComponent } from './components/transactions-panel/transactions-panel.component';
 import { AddressDetailsComponent } from './pages/address-details/address-details.component';
 import { BlockDetailsComponent } from './pages/block-details/block-details.component';
 import { ExplorerHomeComponent } from './pages/explorer-home/explorer-home.component';
-import { SettingsComponent } from './pages/settings/settings.component';
 import { TransactionDetailsComponent } from './pages/transaction-details/transaction-details.component';
 import { HexToAsciiPipe } from './pipes/hex-to-ascii.pipe';
 import { UnixTimestampToDatePipe } from './pipes/unix-timestamp-to-date.pipe';
@@ -46,12 +46,10 @@ import { TransactionService } from './services/transaction.service';
     // pipes
     UnixTimestampToDatePipe,
     HexToAsciiPipe,
-    SettingsComponent,
-    SettingsConnectionComponent,
-    SettingsBookmarksComponent,
     BookmarkComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     RoutingModule,
     RouterModule,
@@ -61,7 +59,7 @@ import { TransactionService } from './services/transaction.service';
     ReactiveFormsModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    NgxQRCodeModule,
+    // NgxQRCodeModule,
     HttpClientModule,
   ],
   providers: [

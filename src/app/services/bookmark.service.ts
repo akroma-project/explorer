@@ -1,14 +1,13 @@
 import { Injectable, OnInit } from '@angular/core';
-import PouchDB from 'pouchdb';
 import { Bookmark } from '../models/bookmark.model';
 
 @Injectable()
 export class BookmarkService implements OnInit {
-    private db: PouchDB.Database<Bookmark>;
-    public constructor(
-    ) {
-        this.db = new PouchDB('bookmarks');
-    }
+    private db: any;
+    // public constructor(
+    // ) {
+    //     this.db = new PouchDB('bookmarks');
+    // }
 
     async save(unsaved: Bookmark): Promise<Bookmark> {
         try {
@@ -36,7 +35,7 @@ export class BookmarkService implements OnInit {
         console.log('called: bookmarkService.getAll');
         const allDocs = await this.db.allDocs({ include_docs: true });
         const results: Bookmark[] = [];
-        allDocs.rows.forEach(x => {
+        allDocs.rows.forEach((x: { doc: Bookmark; }) => {
             console.log(x);
             results.push(x.doc as Bookmark);
         });
