@@ -47,7 +47,7 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
+              "aot": false,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
@@ -61,7 +61,8 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "akroma-static-explorer:build:production"
+              "browserTarget": "akroma-static-explorer:build:production",
+              "aot": false
             }
           }
         },

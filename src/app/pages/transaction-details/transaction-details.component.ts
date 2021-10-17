@@ -19,7 +19,8 @@ export class TransactionDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params: any) => {
+      // { transactionHash: string; }
       this.transaction$ = from(this.transactionService.getTransaction(params.transactionHash));
     });
   }

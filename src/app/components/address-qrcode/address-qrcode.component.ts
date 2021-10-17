@@ -1,5 +1,5 @@
 import { Component, Input, TemplateRef, ViewEncapsulation } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-address-qrcode',

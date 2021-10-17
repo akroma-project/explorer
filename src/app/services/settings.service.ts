@@ -8,7 +8,7 @@ export class SettingsService {
         if (url !== null) {
             return url;
         }
-        return 'https://remote.akroma.io';
+        return 'https://boot2.akroma.org';
     }
 
     public setConnectionUrl(url: string): string {
