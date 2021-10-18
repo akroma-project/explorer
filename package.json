@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "push": "git subtree split --prefix dist/explorer -b gh-pages && git push -f origin gh-pages:gh-pages && git branch -D gh-pages"
+    "push": "git subtree split --prefix dist -b release && git push -f origin release:release && git branch -D release"
   },
   "private": true,
   "dependencies": {
