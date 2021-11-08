@@ -25,7 +25,6 @@ import { AddressService } from './services/address.service';
 import { AkromaService } from './services/akroma.service';
 import { BlockService } from './services/block.service';
 import { BookmarkService } from './services/bookmark.service';
-import { MasternodeService } from './services/masternode.service';
 import { SettingsService } from './services/settings.service';
 import { TransactionService } from './services/transaction.service';
 
@@ -68,7 +67,6 @@ import { TransactionService } from './services/transaction.service';
     AddressService,
     SettingsService,
     AkromaService,
-    MasternodeService,
     BookmarkService,
   ],
   bootstrap: [AppComponent]
