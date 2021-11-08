@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Block } from "typesafe-web3/dist/lib/model/block";
 import { AkromaService } from "./akroma.service";
-import _ from "lodash";
+import { uniqBy } from "lodash";
+
 @Injectable()
 export class BlockService {
   constructor(private akroma: AkromaService) {}
@@ -20,7 +21,7 @@ export class BlockService {
         }
       }
     }
-    const unique = _.uniqBy(blocks, (x) => x.number);
+    const unique = uniqBy(blocks, (x) => x.number);
     return unique;
   }
 
