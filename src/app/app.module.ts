@@ -11,7 +11,6 @@ import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AddressQrcodeComponent } from './components/address-qrcode/address-qrcode.component';
 import { BlocksPanelComponent } from './components/blocks-panel/blocks-panel.component';
-import { BookmarkComponent } from './components/bookmark/bookmark.component';
 import { HeaderComponent } from './components/header/header.component';
 import { TransactionsPanelComponent } from './components/transactions-panel/transactions-panel.component';
 import { AddressDetailsComponent } from './pages/address-details/address-details.component';
@@ -24,7 +23,6 @@ import { RoutingModule } from './routing.module';
 import { AddressService } from './services/address.service';
 import { AkromaService } from './services/akroma.service';
 import { BlockService } from './services/block.service';
-import { BookmarkService } from './services/bookmark.service';
 import { SettingsService } from './services/settings.service';
 import { TransactionService } from './services/transaction.service';
 
@@ -45,7 +43,6 @@ import { TransactionService } from './services/transaction.service';
     // pipes
     UnixTimestampToDatePipe,
     HexToAsciiPipe,
-    BookmarkComponent,
   ],
   imports: [
     CommonModule,
@@ -67,7 +64,6 @@ import { TransactionService } from './services/transaction.service';
     AddressService,
     SettingsService,
     AkromaService,
-    BookmarkService,
   ],
   bootstrap: [AppComponent]
 })
