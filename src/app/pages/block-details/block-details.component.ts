@@ -17,9 +17,7 @@ export class BlockDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private blockService: BlockService,
-  ) {
-    console.log('block details!');
-  }
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
