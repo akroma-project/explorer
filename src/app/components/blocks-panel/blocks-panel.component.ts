@@ -1,24 +1,21 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { from, Observable } from 'rxjs';
-import { Block } from 'typesafe-web3/dist/lib/model/block';
-import { BlockService } from '../../services/block.service';
-
+import { Component, OnInit } from "@angular/core";
+import { Block } from "typesafe-web3/dist/lib/model/block";
+import { BlockService } from "../../services/block.service";
 
 @Component({
-  selector: 'app-blocks-panel',
-  templateUrl: './blocks-panel.component.html',
-  styleUrls: ['./blocks-panel.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: "app-blocks-panel",
+  templateUrl: "./blocks-panel.component.html",
+  styleUrls: ["./blocks-panel.component.scss"],
 })
 export class BlocksPanelComponent implements OnInit {
-  blocks$!: Observable<Block[]>;
+  blocks: Block[] = [];
 
-  constructor(
-    private blockService: BlockService,
-  ) { }
+  constructor(private blockService: BlockService) {}
 
   ngOnInit() {
-    this.blocks$ = from(this.blockService.getBlocks());
+    this.blockService.blocksSubject.subscribe((success: Block[]) => {
+      this.blocks = success;
+    });
   }
 
   trackBlock(index: number, block: Block) {
