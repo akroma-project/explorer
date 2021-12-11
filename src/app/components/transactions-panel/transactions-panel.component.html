@@ -1,5 +1,8 @@
 <h1>Transactions</h1>
-<div *ngFor="let block of blocks$ | async">
+<div *ngIf="blocks">
+
+</div>
+<div *ngFor="let block of blocks">
   <div class="pt-3" *ngFor="let transaction of block.transactions">
     <div class="card card-akroma text-white bg-dark">
       <div class="card-header">
