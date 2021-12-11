@@ -2,9 +2,12 @@ import { Injectable } from "@angular/core";
 import { Block } from "typesafe-web3/dist/lib/model/block";
 import { AkromaService } from "./akroma.service";
 import { uniqBy } from "lodash";
+import { BehaviorSubject, Subject } from "rxjs";
 
 @Injectable()
 export class BlockService {
+  blocksSubject = new BehaviorSubject<Block[]>([]);
+
   constructor(private akroma: AkromaService) {}
 
   public async getBlocks(): Promise<Block[]> {
@@ -22,6 +25,7 @@ export class BlockService {
       }
     }
     const unique = uniqBy(blocks, (x) => x.number);
+    this.blocksSubject.next(unique);
     return unique;
   }
 

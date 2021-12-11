@@ -24,6 +24,10 @@
               <td>{{ block.timestamp | unixTimestampToDate | date:'yyyy-MM-dd HH:mm:ss' }}</td>
             </tr>
             <tr>
+              <td>Transactions</td>
+              <td>{{ block.transactions.length }}</td>
+            </tr>
+            <tr>
               <td>Parent Hash</td>
               <td>
                 <a [routerLink]="['/', 'block', block.parentHash]">
