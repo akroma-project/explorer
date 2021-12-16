@@ -17,13 +17,21 @@
                 </form>
             </div>
         </div>
-        <!-- <div class="row">
+        <div class="row">
             <div class="col text-right">
-                <a [routerLink]="['/', 'settings']" class="btn btn-akroma">
-                    <span>{{ connectedTo }}</span>
-                    <span> &equiv;</span>
-                </a>
+                <form class="form-inline my-2 my-lg-0 float-right">
+                    <div class="input-group">
+                        <select class="form-control form-control-akroma dropdown-akroma" [(ngModel)]="connectionUrl" (change)="onUrlChange($event.target.value)">
+                            <option value="prod"> https://boot2.akroma.org </option>
+                            <option value="test"> https://test1.akroma.org </option>
+                        </select>
+                    </div>
+                </form>
+
+
+
+               
             </div>
-        </div> -->
+        </div>
     </div>
 </div>
