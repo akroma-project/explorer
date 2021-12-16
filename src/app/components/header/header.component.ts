@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BlockService } from 'src/app/services/block.service';
 import Utils from 'typesafe-web3/dist/lib/utils';
 import { SettingsService } from '../../services/settings.service';
 
@@ -13,11 +14,13 @@ import { SettingsService } from '../../services/settings.service';
 export class HeaderComponent implements OnInit {
   lookupForm!: FormGroup;
   modalRef!: BsModalRef;
+  connectionUrl: string = "prod";
 
   constructor(
     private formBuilder: FormBuilder,
     public router: Router,
     private settings: SettingsService,
+    private blocks: BlockService,
   ) {
   }
 
@@ -25,6 +28,9 @@ export class HeaderComponent implements OnInit {
     this.lookupForm = this.formBuilder.group({
       lookup: this.formBuilder.control(''),
     });
+    const connection = this.settings.getConnectionUrl();
+    console.debug(connection);
+    this.connectionUrl = connection.indexOf('test') > 0 ? 'test' : 'prod';
   }
 
   get connectedTo(): string {
@@ -38,6 +44,12 @@ export class HeaderComponent implements OnInit {
     if (!lookupType) { return; }
 
     this.router.navigate(['/', lookupType, lookupValue]);
+  }
+
+  onUrlChange(url: string){
+    this.settings.setConnectionUrl(url);
+    this.blocks.blocksSubject.next([]);
+    this.blocks.getBlocks();
   }
 
   private getLookupType(lookupValue: string): string | null {
