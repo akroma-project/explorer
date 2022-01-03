@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'block/:blockId', component: BlockDetailsComponent },
   { path: 'transaction/:transactionHash', component: TransactionDetailsComponent },
   { path: 'address/:addressHash', component: AddressDetailsComponent },
-  { path: 'tokens/:contractHash', component: TokenContactDetailsComponent },
+  { path: 'token/:contractHash', component: TokenContactDetailsComponent },
 ];
 
 @NgModule({
