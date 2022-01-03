@@ -1,0 +1,14 @@
+@import 'akroma';
+
+:host, .page-body {
+  display: block;
+  min-height: 70vh;
+}
+
+.sent {
+  color: #CF0000;
+}
+
+.received {
+  color: green;
+}

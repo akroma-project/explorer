@@ -1,0 +1,214 @@
+<app-header></app-header>
+
+<div class="page-body">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Address</h1>
+        <div>{{ contract }}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <table class="table table-striped table-dark table-akroma table-responsive-sm">
+
+          <tbody>
+            <tr>
+              <td>Address</td>
+              <td>
+                {{ address }}
+                <span class="float-right">
+                  <app-address-qrcode [hash]="address"></app-address-qrcode>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>Transactions</td>
+              <td>{{ total }}</td>
+            </tr>
+            <tr>
+              <td>Balance</td>
+              <td>{{ (balance$ | async) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h1>Transactions</h1>
+      </div>
+    </div>
+    <ng-container *ngIf="(addressTransactions$ | async)?.length > 0">
+      <div class="row">
+        <div class="col">
+          <pagination class="pagination-sm" [totalItems]="total" [maxSize]="10" [(ngModel)]="currentPage" previousText="&nbsp;" nextText="&nbsp;" [itemsPerPage]="10" [rotate]="false" (pageChanged)="pageAddressTransactions($event)" (numPages)="numPages = 10"></pagination>
+        </div>
+      </div>
+    </ng-container>
+    <div class="row">
+      <div class="col">
+        <ng-container *ngIf="addressTransactions$ | async as trans">
+          <table class="table table-striped table-dark table-akroma table-responsive-sm">
+            <thead>
+              <tr>
+                <th class="w-25" i18n>Hash</th>
+                <th i18n>Date</th>
+                <th i18n>Direction</th>
+                <th i18n>Address</th>
+                <th i18n>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let transaction of trans">
+                <td>
+                  <a [routerLink]="['/', 'transaction', transaction.hash]" class="transaction-hash-link">
+                    {{ transaction.hash | slice:0:20 }}...
+                  </a>
+                </td>
+                <td>{{ transaction.ts | unixTimestampToDate | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                <td>
+                  <span *ngIf="isFrom(transaction.from); else fromDirection">
+                    <span>Sent</span>
+                  </span>
+                  <ng-template #fromDirection>
+                    <span>Received</span>
+                  </ng-template>
+                </td>
+                <td>
+                  <span *ngIf="isFrom(transaction.from); else fromAddress">
+                    <a [routerLink]="['/', 'address', transaction.to]" class="transaction-to-from-link">
+                      {{ transaction.to }}
+                    </a>
+                  </span>
+                  <ng-template #fromAddress>
+                    <a [routerLink]="['/', 'address', transaction.from]" class="transaction-to-from-link">
+                      {{ transaction.from }}
+                    </a>
+                  </ng-template>
+                </td>
+                <td>
+                  <span *ngIf="isFrom(transaction.from); else toValue">
+                    <span class="sent">-{{ transaction.value }} AKA</span>
+                  </span>
+                  <ng-template #toValue>
+                    <span class="received">+{{ transaction.value }} AKA</span>
+                  </ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <ng-container *ngIf="address$ | async as address">
+  <div class="background">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-8">
+          <div class="address">
+            {{ address.hash }}
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="qrcode">
+            <app-address-qrcode [hash]="address.hash"></app-address-qrcode>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12 col-md-6">
+          <div class="info d-flex align-items-baseline px-2">
+            {{ address.balance }}
+          </div>
+          <div class="py-1 px-2 text-uppercase type" i18n>
+            Akroma Balance
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="info d-flex align-items-baseline px-2">
+            {{ address.mined }}
+          </div>
+          <div class="py-1 px-2 text-uppercase type" i18n>
+            Blocks Mined
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="info d-flex align-items-baseline px-2">
+            {{ address.transactionsInitiatedCount }}
+          </div>
+          <div class="py-1 px-2 text-uppercase type" i18n>
+            Transactions
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container transactions">
+    <div class="row">
+      <div class="col">
+        <div class="transaction-header" i18n>
+          Transactions
+        </div>
+      </div>
+    </div>
+    <ng-container *ngIf="addressTransactions$ | async as addressTransactions">
+      <div class="row">
+        <div class="col">
+          <div *ngFor="let transaction of addressTransactions.transactions">
+            <div class="transaction-grid">
+              <div class="transaction-icon">
+                <img *ngIf="transaction.from.toLowerCase() === address.hash.toLowerCase(); else receivedIcon" src="assets/images/icon-sent.svg" alt="Sent">
+                <ng-template #receivedIcon>
+                  <img src="assets/images/icon-received.svg" alt="Received">
+                </ng-template>
+              </div>
+              <a [routerLink]="['/explorer', 'transaction', transaction.hash]" class="transaction-hash-link">
+                <div class="transaction-hash">
+                  <span class="text-truncate">
+                    {{ transaction.hash }}
+                  </span>
+                </div>
+              </a>
+              <ng-template *ngIf="transaction.from.toLowerCase() === address.hash.toLowerCase(); then sentAction; else receivedAction"></ng-template>
+              <ng-template #sentAction>
+                <a [routerLink]="['/explorer', 'address', transaction.to]" class="transaction-action-link">
+                  <div class="transaction-action">
+                    <span class="text-truncate">
+                      <span class="bold text-uppercase" i18n>TO</span> {{ transaction.to }}</span>
+                  </div>
+                </a>
+              </ng-template>
+              <ng-template #receivedAction>
+                <a [routerLink]="['/explorer', 'address', transaction.from]" class="transaction-action-link">
+                  <div class="transaction-action">
+                    <span class="text-truncate">
+                      <span class="bold text-uppercase" i18n>FROM</span> {{ transaction.from }}</span>
+                  </div>
+                </a>
+              </ng-template>
+              <div class="transaction-value">
+                {{ transaction.value | number:'1.0-5' }} AKA
+              </div>
+              <div class="transaction-timestamp">
+                {{ transaction.timestamp | unixTimestampToDate | date:'yyyy-MM-dd HH:mm:ss' }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <ng-container *ngIf="addressTransactions.totalPages > 1">
+            <pagination class="pagination-sm" [totalItems]="addressTransactions.totalTransactions" [maxSize]="6" [(ngModel)]="currentPage"
+              previousText="&nbsp;" nextText="&nbsp;" [itemsPerPage]="20" [rotate]="false" (pageChanged)="pageAddressTransactions($event)" (numPages)="numPages = addressTransactions.totalPages"></pagination>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container> -->
