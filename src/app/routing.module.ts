@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: '', component: ExplorerHomeComponent },
   { path: 'block/:blockId', component: BlockDetailsComponent },
   { path: 'transaction/:transactionHash', component: TransactionDetailsComponent },
+  { path: 'tx/:transactionHash', component: TransactionDetailsComponent },
   { path: 'address/:addressHash', component: AddressDetailsComponent },
   { path: 'token/:contractHash', component: TokenContactDetailsComponent },
 ];
