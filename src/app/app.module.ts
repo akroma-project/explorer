@@ -25,6 +25,7 @@ import { AkromaService } from './services/akroma.service';
 import { BlockService } from './services/block.service';
 import { SettingsService } from './services/settings.service';
 import { TransactionService } from './services/transaction.service';
+import { TokenContactDetailsComponent } from './pages/token-contract-details/token-contract-details.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { TransactionService } from './services/transaction.service';
     AddressDetailsComponent,
     BlockDetailsComponent,
     TransactionDetailsComponent,
+    TokenContactDetailsComponent,
     // components
     BlocksPanelComponent,
     AddressQrcodeComponent,
