@@ -10,6 +10,7 @@ export class AppComponent {
   constructor(private blockService: BlockService) {}
 
   async ngOnInit() {
-    await this.blockService.getBlocks();
+    // await this.blockService.getBlocks();
+    
   }
 }
