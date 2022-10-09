@@ -1,45 +1,50 @@
 <h1>Transactions</h1>
-<div *ngIf="blocks">
+<div class="pt-3" *ngFor="let transaction of transactions">
+  <div class="card card-akroma text-white bg-dark">
+    <div class="card-header">
+      <span>
+        <a [routerLink]="['/', 'transaction', transaction.hash]" class="transaction-hash-link">
+          {{ transaction.hash | slice:0:25 }}
+        </a>
 
-</div>
-<div *ngFor="let block of blocks">
-  <div class="pt-3" *ngFor="let transaction of block.transactions">
-    <div class="card card-akroma text-white bg-dark">
-      <div class="card-header">
-        <span>
-          <a [routerLink]="['/', 'transaction', transaction.hash]" class="transaction-hash-link">
-            {{ transaction.hash | slice:0:25 }}
-          </a>
-
-        </span>
-        <span class="float-right">{{ block.timestamp | unixTimestampToDate | date:'yyyy-MM-dd HH:mm:ss' }}</span>
+      </span>
+      <span class="float-right">{{ transaction.ts | unixTimestampToDate | date:'yyyy-MM-dd HH:mm:ss' }}</span>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-2">amount</div>
+        <div class="col">
+          <span class="float-right">{{ transaction.value | toAka }}</span>
+        </div>
       </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-sm-2">amount</div>
-          <div class="col">
-            <span class="float-right">{{ transaction.value }}</span>
-          </div>
+      <div class="row">
+        <div class="col-sm-2">from</div>
+        <div class="col">
+          <span class="float-right">
+            <a [routerLink]="['/', 'address', transaction.from]" class="transaction-to-from-link">
+              {{ transaction.from }}
+            </a>
+          </span>
         </div>
-        <div class="row">
-          <div class="col-sm-2">from</div>
-          <div class="col">
-            <span class="float-right">
-              <a [routerLink]="['/', 'address', transaction.from]" class="transaction-to-from-link">
-                {{ transaction.from }}
-              </a>
-            </span>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2">to</div>
+        <div class="col">
+          <span class="float-right">
+            <a [routerLink]="['/', 'address', transaction.to]" class="transaction-to-from-link">
+              {{ transaction.to }}
+            </a>
+          </span>
         </div>
-        <div class="row">
-          <div class="col-sm-2">to</div>
-          <div class="col">
-            <span class="float-right">
-              <a [routerLink]="['/', 'address', transaction.to]" class="transaction-to-from-link">
-                {{ transaction.to }}
-              </a>
-            </span>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2">to</div>
+        <div class="col">
+          <span class="float-right">
+            <a [routerLink]="['/', 'block', transaction.blockNumber]" class="transaction-to-from-link">
+              {{ transaction.blockNumber }}
+            </a>
+          </span>
         </div>
       </div>
     </div>

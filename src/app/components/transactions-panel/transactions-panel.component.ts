@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Block } from "typesafe-web3/dist/lib/model/block";
+import { ApiService } from "src/app/services/api.service";
 import { Transaction } from "typesafe-web3/dist/lib/model/transaction";
-import { BlockService } from "../../services/block.service";
 
 @Component({
   selector: "app-transactions-panel",
@@ -9,13 +8,13 @@ import { BlockService } from "../../services/block.service";
   styleUrls: ["./transactions-panel.component.scss"],
 })
 export class TransactionsPanelComponent implements OnInit {
-  blocks: Block[] = [];
+  transactions: Transaction[] = [];
 
-  constructor(private blockService: BlockService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.blockService.blocksSubject.subscribe((success: Block[]) => {
-      this.blocks = success;
+    this.apiService.transactionsSubject.subscribe((success: Transaction[]) => {
+      this.transactions = success;
     });
   }
 

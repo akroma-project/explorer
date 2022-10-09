@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { ApiService } from "src/app/services/api.service";
 import { Block } from "typesafe-web3/dist/lib/model/block";
-import { BlockService } from "../../services/block.service";
 
 @Component({
   selector: "app-blocks-panel",
@@ -10,10 +10,10 @@ import { BlockService } from "../../services/block.service";
 export class BlocksPanelComponent implements OnInit {
   blocks: Block[] = [];
 
-  constructor(private blockService: BlockService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.blockService.blocksSubject.subscribe((success: Block[]) => {
+    this.apiService.blocksSubject.subscribe((success: Block[]) => {
       this.blocks = success;
     });
   }
