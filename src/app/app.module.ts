@@ -17,7 +17,7 @@ import { AddressDetailsComponent } from './pages/address-details/address-details
 import { BlockDetailsComponent } from './pages/block-details/block-details.component';
 import { ExplorerHomeComponent } from './pages/explorer-home/explorer-home.component';
 import { TransactionDetailsComponent } from './pages/transaction-details/transaction-details.component';
-import { HexToAsciiPipe } from './pipes/hex-to-ascii.pipe';
+import { WeiToAkaPipe } from './pipes/wei-to-aka.pipe';
 import { UnixTimestampToDatePipe } from './pipes/unix-timestamp-to-date.pipe';
 import { RoutingModule } from './routing.module';
 import { AddressService } from './services/address.service';
@@ -26,6 +26,8 @@ import { BlockService } from './services/block.service';
 import { SettingsService } from './services/settings.service';
 import { TransactionService } from './services/transaction.service';
 import { TokenContactDetailsComponent } from './pages/token-contract-details/token-contract-details.component';
+import { ApiService } from './services/api.service';
+import { HexToAsciiPipe } from './pipes/hex-to-ascii.pipe copy';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { TokenContactDetailsComponent } from './pages/token-contract-details/tok
     AddressQrcodeComponent,
     // pipes
     UnixTimestampToDatePipe,
+    WeiToAkaPipe,
     HexToAsciiPipe,
   ],
   imports: [
@@ -66,6 +69,7 @@ import { TokenContactDetailsComponent } from './pages/token-contract-details/tok
     AddressService,
     SettingsService,
     AkromaService,
+    ApiService,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,4 @@
-import { HexToAsciiPipe } from './hex-to-ascii.pipe';
+import { HexToAsciiPipe } from './wei-to-aka.pipe';
 
 describe('HexToAsciiPipe', () => {
   let pipe: HexToAsciiPipe;
