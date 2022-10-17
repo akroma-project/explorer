@@ -1,5 +1,32 @@
-<h1>Transactions</h1>
-<div class="pt-3" *ngFor="let transaction of transactions">
+<div class="small-title">Transactions</div>
+<div class="pt-3">
+  <table class="table table-striped table-dark table-akroma table-responsive-sm">
+    <thead>
+      <th>Hash</th>
+      <!-- <th>Timestamp</th> -->
+      <th>From</th>
+      <th>To</th>
+      <th>Value</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transaction of transactions">
+        <td><a [routerLink]="['/', 'transaction', transaction.hash]">
+            {{ getShortHash(transaction.hash) }}
+          </a></td>
+        <!-- <td>{{ transaction.ts | unixTimestampToDate | date:'yyyy-MM-dd HH:mm:ss' }}</td> -->
+        <td><a [routerLink]="['/', 'address', transaction.from]">
+            {{ getShortAddress(transaction.from) }}
+          </a></td>
+        <td><a [routerLink]="['/', 'address', transaction.to]">
+          {{ getShortAddress(transaction.to) }}
+          </a></td>
+        <td>{{ transaction.value | toAka }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- <h1>Transactions</h1>
+<div class="pt-3" >
   <div class="card card-akroma text-white bg-dark">
     <div class="card-header">
       <span>
@@ -49,4 +76,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

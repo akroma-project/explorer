@@ -28,6 +28,10 @@ import { TransactionService } from './services/transaction.service';
 import { TokenContactDetailsComponent } from './pages/token-contract-details/token-contract-details.component';
 import { ApiService } from './services/api.service';
 import { HexToAsciiPipe } from './pipes/hex-to-ascii.pipe copy';
+import { HomeNetworkComponent } from './components/home-network/home-network.component';
+import { HomePlatformComponent } from './components/home-platform/home-platform.component';
+import { HomeEcosystemComponent } from './components/home-ecosystem/home-ecosystem.component';
+import { HomeCommunityComponent } from './components/home-community/home-community.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +52,10 @@ import { HexToAsciiPipe } from './pipes/hex-to-ascii.pipe copy';
     UnixTimestampToDatePipe,
     WeiToAkaPipe,
     HexToAsciiPipe,
+    HomeNetworkComponent,
+    HomePlatformComponent,
+    HomeEcosystemComponent,
+    HomeCommunityComponent,
   ],
   imports: [
     CommonModule,
