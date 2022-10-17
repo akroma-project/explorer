@@ -4,8 +4,6 @@ import { from, Observable } from 'rxjs';
 import { Transaction } from 'typesafe-web3/dist/lib/model/transaction';
 import { AddressService } from '../../services/address.service';
 import { TransactionService } from '../../services/transaction.service';
-import { getTokenInfoByContractAddress } from '@akroma-project/akroma-erc20-token-list';
-import { ethers } from 'ethers';
 
 @Component({
   selector: 'app-token-contract-details',
@@ -38,8 +36,6 @@ export class TokenContactDetailsComponent implements OnInit {
       // this.balance$ = from(this.addressService.getBalance(this.address));
       // this.pageAddressTransactions({ init: true, page: 1 });
       console.debug(this.contract);
-      const info = getTokenInfoByContractAddress(this.contract);
-      console.debug(info);
     });
    
   }
@@ -49,8 +45,6 @@ export class TokenContactDetailsComponent implements OnInit {
     if (this.currentPage === event.page && !event.init) {
       return;
     }
-    this.addressTransactions$ = from(this.transactionService.getTransactionsAndBlockByAddress(this.contract, event.page - 1));
-    this.currentPage = event.page;
   }
 
   public isFrom(address: string): boolean {
