@@ -9,3 +9,10 @@
   margin-top: 25px;
   border-bottom: 1px solid white;
 }
+
+a,
+a:visited,
+a:hover,
+a:active {
+  color: #212529;
+}
