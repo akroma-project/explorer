@@ -1,0 +1,6 @@
+.background {
+    background-image: url('../../../assets/images/akroma-bg3-dark.png');
+    color: #fff;
+    background-size: cover;
+    min-height: 250px;
+  }

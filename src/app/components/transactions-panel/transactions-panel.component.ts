@@ -14,11 +14,19 @@ export class TransactionsPanelComponent implements OnInit {
 
   ngOnInit() {
     this.apiService.transactionsSubject.subscribe((success: Transaction[]) => {
-      this.transactions = success;
+      this.transactions = success.slice(0, 10);
     });
   }
 
   trackTransaction(index: number, transaction: Transaction) {
     return transaction ? transaction.hash : undefined;
+  }
+
+  getShortHash(hash: string) {
+    return hash.slice(0, 5) + "..." + hash.slice(-5);
+  }
+
+  getShortAddress(address: string) {
+    return address.slice(0, 5) + "..." + address.slice(-5);
   }
 }

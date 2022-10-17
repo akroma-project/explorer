@@ -14,7 +14,7 @@ export class BlocksPanelComponent implements OnInit {
 
   ngOnInit() {
     this.apiService.blocksSubject.subscribe((success: Block[]) => {
-      this.blocks = success;
+      this.blocks = success.slice(0, 10);
     });
   }
 
