@@ -1,0 +1,16 @@
+@import 'akroma';
+
+.background {
+    background-image: url('../../../assets/images/akroma-bg2-light.png');
+    color: #fff;
+    background-size: cover;
+    min-height: 750px;
+  }
+
+  .page-body {
+    color: $akroma-dark;
+  }
+
+  .small-title {
+    color: $akroma-dark-base;
+  }

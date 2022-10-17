@@ -1,54 +1,53 @@
-@import 'akroma-colors';
+@import "akroma-colors";
 
 .card-akroma {
-    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
-    border-radius: 0 !important;
+  box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 0 !important;
 
-    a{
-        color: $akroma-white;
-        text-decoration: underline;
-    }
+  a {
+    color: $akroma-white;
+    text-decoration: underline;
+  }
 }
 
 .dropdown-akroma {
-    border-radius: 0;
-    box-shadow: -8px 8px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 0;
+  box-shadow: -8px 8px 10px rgba(0, 0, 0, 0.25);
 }
 
 .btn-akroma {
-    border-radius: 0;
-    background-color: $akroma-dark-base !important;
-    color: white;
-    // text-transform: uppercase;
-    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 0;
+  background-color: $akroma-dark-base !important;
+  color: white;
+  // text-transform: uppercase;
+  box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
 
-    &.on-form {
-        background-color: $akroma-dark !important;
-    }
+  &.on-form {
+    background-color: $akroma-dark !important;
+  }
 }
 
 .table-akroma {
-    // text-transform: uppercase;
-    box-shadow: -8px 8px 10px rgba(0, 0, 0, 0.25);
-    &.table-dark {
-
-        tr td:first-child {
-            text-transform: uppercase;
-        }
-        a,
-        a:visited {
-            color: #fff;
-            text-decoration: none;
-        }
-        a:hover,
-        a.active {
-            text-decoration: underline;
-            opacity: 0.60;
-        }
+  // text-transform: uppercase;
+  box-shadow: -8px 8px 10px rgba(0, 0, 0, 0.25);
+  &.table-dark {
+    tr td:first-child {
+      // text-transform: uppercase;
     }
+    a,
+    a:visited {
+      color: #fff;
+      text-decoration: none;
+    }
+    a:hover,
+    a.active {
+      text-decoration: underline;
+      opacity: 0.6;
+    }
+  }
 }
 
 .form-control-akroma {
-    border: 1px solid #fbfbfb;
-    border-radius: 0;
+  border: 1px solid #fbfbfb;
+  border-radius: 0;
 }

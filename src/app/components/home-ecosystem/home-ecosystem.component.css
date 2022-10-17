@@ -1,0 +1,18 @@
+.background {
+  background-image: url("../../../assets/images/akroma-bg3-color.png");
+  color: #fff;
+  background-size: cover;
+  min-height: 750px;
+}
+
+.section-title {
+  margin-top: 25px;
+  border-bottom: 1px solid white;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+  color: #212529;
+}
