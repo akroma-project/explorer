@@ -32,6 +32,8 @@ import { HomeNetworkComponent } from './components/home-network/home-network.com
 import { HomePlatformComponent } from './components/home-platform/home-platform.component';
 import { HomeEcosystemComponent } from './components/home-ecosystem/home-ecosystem.component';
 import { HomeCommunityComponent } from './components/home-community/home-community.component';
+import { ContractsComponent } from './pages/contracts/contracts.component';
+import { ContractsTableComponent } from './components/contracts-table/contracts-table.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { HomeCommunityComponent } from './components/home-community/home-communi
     HomePlatformComponent,
     HomeEcosystemComponent,
     HomeCommunityComponent,
+    ContractsComponent,
+    ContractsTableComponent,
   ],
   imports: [
     CommonModule,
