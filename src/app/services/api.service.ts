@@ -7,6 +7,7 @@ import { catchError, timeout } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { Transaction } from "typesafe-web3/dist/lib/model/transaction";
+import AkaContract from "../model/aka.contract";
 
 @Injectable()
 export class ApiService {
@@ -19,6 +20,16 @@ export class ApiService {
     this.getLatestBlocks().subscribe((success: Block[]) => {
       this.blocksSubject.next(uniqBy(success, "number"));
     });
+  }
+
+  public getLatestContracts(): Observable<AkaContract[]> {
+    return this.http
+      .get<AkaContract[]>(
+        `${environment.api}/contracts?pageNumber=0`
+      ).pipe(
+        timeout(360000),
+        catchError(error => this.handleError('api.get.contracts.latest', error))
+      );
   }
 
   public getLatestBlocks(): Observable<Block[]> {

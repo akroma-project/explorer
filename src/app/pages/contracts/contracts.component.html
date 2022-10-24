@@ -1,0 +1,35 @@
+<app-header></app-header>
+
+<div class="page-body background">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="section-title">Contracts</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-striped table-dark table-akroma">
+                    <thead>
+                        <tr>
+                            <th>Address</th>
+                            <th>Deployed By</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let contract of contracts">
+                            <td>
+                                <a [routerLink]="['/', 'contract', contract.address]">{{ contract.address }}</a>
+                            </td>
+                            <td>
+                                <a [routerLink]="['/', 'address', contract.owner]">{{ contract.owner }}</a>
+                            </td>
+                            <td>{{ contract.type }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
