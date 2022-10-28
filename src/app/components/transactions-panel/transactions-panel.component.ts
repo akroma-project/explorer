@@ -23,10 +23,16 @@ export class TransactionsPanelComponent implements OnInit {
   }
 
   getShortHash(hash: string) {
+    if(!hash || hash?.length < 10) {
+      return "Pending";
+    }
     return hash.slice(0, 5) + "..." + hash.slice(-5);
   }
 
   getShortAddress(address: string) {
+    if(!address || address?.length < 10) {
+      return "Pending";
+    }
     return address.slice(0, 5) + "..." + address.slice(-5);
   }
 }
