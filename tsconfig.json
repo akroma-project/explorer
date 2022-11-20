@@ -9,14 +9,14 @@
     "target": "ES2017",
     "types": [
       "node",
-      "mocha",
-      "chai"
+      "jest",
     ],
     "strict": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   }  
 }

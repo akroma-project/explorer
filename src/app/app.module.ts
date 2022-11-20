@@ -34,6 +34,7 @@ import { HomeEcosystemComponent } from './components/home-ecosystem/home-ecosyst
 import { HomeCommunityComponent } from './components/home-community/home-community.component';
 import { ContractsComponent } from './pages/contracts/contracts.component';
 import { ContractsTableComponent } from './components/contracts-table/contracts-table.component';
+import { TempcompComponent } from './components/tempcomp/tempcomp.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { ContractsTableComponent } from './components/contracts-table/contracts-
     HomeCommunityComponent,
     ContractsComponent,
     ContractsTableComponent,
+    TempcompComponent,
   ],
   imports: [
     CommonModule,
