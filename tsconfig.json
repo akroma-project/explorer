@@ -6,7 +6,7 @@
     "sourceMap": true,
     "declaration": false,
     "module": "commonjs",
-    "target": "ES2017",
+    "target": "es2020",
     "types": [
       "node",
       "mocha",

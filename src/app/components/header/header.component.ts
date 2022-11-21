@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { BlockService } from 'src/app/services/block.service';
@@ -12,12 +12,12 @@ import { SettingsService } from '../../services/settings.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  lookupForm!: FormGroup;
+  lookupForm!: UntypedFormGroup;
   modalRef!: BsModalRef;
   connectionUrl: string = "prod";
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public router: Router,
     private settings: SettingsService,
     private blocks: BlockService,
