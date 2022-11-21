@@ -14,10 +14,10 @@
             {{ getShortHash(transaction.hash) }}
           </a></td>
         <!-- <td>{{ transaction.ts | unixTimestampToDate | date:'yyyy-MM-dd HH:mm:ss' }}</td> -->
-        <td><a [routerLink]="['/', 'address', transaction.from]">
+        <td><a [routerLink]="['/', 'address', (transaction.from | checksum)]">
             {{ getShortAddress(transaction.from) }}
           </a></td>
-        <td><a [routerLink]="['/', 'address', transaction.to]">
+        <td><a [routerLink]="['/', 'address', (transaction.to | checksum)]">
           {{ getShortAddress(transaction.to) }}
           </a></td>
         <td>{{ transaction.value | toAka }}</td>
@@ -25,55 +25,3 @@
     </tbody>
   </table>
 </div>
-<!-- <h1>Transactions</h1>
-<div class="pt-3" >
-  <div class="card card-akroma text-white bg-dark">
-    <div class="card-header">
-      <span>
-        <a [routerLink]="['/', 'transaction', transaction.hash]" class="transaction-hash-link">
-          {{ transaction.hash | slice:0:25 }}
-        </a>
-
-      </span>
-      <span class="float-right">{{ transaction.ts | unixTimestampToDate | date:'yyyy-MM-dd HH:mm:ss' }}</span>
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-2">amount</div>
-        <div class="col">
-          <span class="float-right">{{ transaction.value | toAka }}</span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-2">from</div>
-        <div class="col">
-          <span class="float-right">
-            <a [routerLink]="['/', 'address', transaction.from]" class="transaction-to-from-link">
-              {{ transaction.from }}
-            </a>
-          </span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-2">to</div>
-        <div class="col">
-          <span class="float-right">
-            <a [routerLink]="['/', 'address', transaction.to]" class="transaction-to-from-link">
-              {{ transaction.to }}
-            </a>
-          </span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-2">to</div>
-        <div class="col">
-          <span class="float-right">
-            <a [routerLink]="['/', 'block', transaction.blockNumber]" class="transaction-to-from-link">
-              {{ transaction.blockNumber }}
-            </a>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->

@@ -15,19 +15,19 @@
             <tr>
               <td>Address</td>
               <td>
-                {{ address }}
+                {{ address | checksum }}
                 <span class="float-right">
-                  <app-address-qrcode [hash]="address"></app-address-qrcode>
+                  <app-address-qrcode [hash]="address | checksum"></app-address-qrcode>
                 </span>
               </td>
             </tr>
             <tr>
               <td>Transactions</td>
-              <td>{{ (total$ | async) }}</td>
+              <td>{{ total | async  }}</td>
             </tr>
             <tr>
               <td>Balance</td>
-              <td>{{ (balance$ | async) }}</td>
+              <td>{{ balance | async }}</td>
             </tr>
           </tbody>
         </table>
@@ -38,16 +38,16 @@
         <h1>Transactions</h1>
       </div>
     </div>
-    <ng-container *ngIf="(addressTransactions$ | async)?.length > 0">
+    <ng-container>
       <div class="row">
         <div class="col">
-          <pagination class="pagination-sm" [totalItems]="(total$ | async)" [(ngModel)]="currentPage" [maxSize]="10" previousText="&nbsp;" nextText="&nbsp;" [itemsPerPage]="10" [rotate]="false" (pageChanged)="pageChanged($event)"></pagination>
+          <pagination class="pagination-sm" [totalItems]="total | async" [(ngModel)]="currentPage" [maxSize]="10" previousText="&nbsp;" nextText="&nbsp;" [itemsPerPage]="10" [rotate]="false" (pageChanged)="pageChanged($event)"></pagination>
         </div>
       </div>
     </ng-container>
     <div class="row">
       <div class="col">
-        <ng-container *ngIf="addressTransactions$ | async as trans">
+        <ng-container *ngIf="addressTransactions | async as trans">
           <table class="table table-striped table-dark table-akroma">
             <thead>
               <tr>

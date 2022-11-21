@@ -8,3 +8,4 @@ export class WeiToAkaPipe implements PipeTransform {
     return Utils.fromWei(value, 'ether') as string;
   }
 }
+//web3.utils.toChecksumAddress(address)
