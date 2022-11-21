@@ -10,8 +10,8 @@
     <tbody>
       <tr *ngFor="let contract of contracts">
         <td>
-            <a [routerLink]="['/', 'address', contract.address]">
-            {{ contract.address }}
+            <a [routerLink]="['/', 'address', (contract.address | checksum)]">
+            {{ contract.address | checksum  }} 
           </a></td>
         <td>{{ contract.type }}</td>
       </tr>

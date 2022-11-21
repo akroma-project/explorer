@@ -1,7 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { from, Observable } from 'rxjs';
+import { ApiService } from 'src/app/services/api.service';
 import { Transaction } from 'typesafe-web3/dist/lib/model/transaction';
+import Utils from 'typesafe-web3/dist/lib/utils';
 import { AddressService } from '../../services/address.service';
 import { TransactionService } from '../../services/transaction.service';
 
@@ -12,39 +15,40 @@ import { TransactionService } from '../../services/transaction.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddressDetailsComponent implements OnInit {
-  currentPage = 1;
+  currentPage = 0;
+  pages = 0;
   transactions!: string[];
-  total = 0;
-  pages = 1;
-  balance$!: Observable<string>;
-  addressTransactions$!: Observable<Transaction[]>;
+  total!: Observable<number>;
+  balance!: Observable<string>;
+  addressTransactions!: Observable<Transaction[]>;
   address = '';
   constructor(
     private route: ActivatedRoute,
     private transactionService: TransactionService,
     private addressService: AddressService,
+    private apiService: ApiService,
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.address = params.addressHash;
-      this.transactionService.getTransactionCountByAddress(params.addressHash)
-        .then(result => {
-          this.total = result;
-          this.pages = result / 10;
-        });
-      this.balance$ = from(this.addressService.getBalance(this.address));
-      this.pageAddressTransactions({ init: true, page: 1 });
+      this.address = Utils.toChecksumAddress(params.addressHash);
+      this.total = from(this.transactionService.getTransactionCountByAddress(params.addressHash));
+      this.total.subscribe(total => {
+        console.debug(`total transactions: ${total}`);
+        this.pages = Math.ceil(total / 10);
+        this.balance = from(this.addressService.getBalance(this.address));
+        this.addressTransactions = from(this.apiService.getTransactionsForAddress(this.address, 0));
+      })
     });
   }
 
-  pageAddressTransactions(event: any) {
+  pageChanged(event: PageChangedEvent): void {
     // guard to prevent excess firing
-    if (this.currentPage === event.page && !event.init) {
+    console.debug(`current page: ${this.currentPage}, new page: ${event.page}`);
+    if (this.currentPage === event.page) {
       return;
     }
-    this.addressTransactions$ = from(this.transactionService.getTransactionsAndBlockByAddress(this.address, event.page - 1));
-    this.currentPage = event.page;
+    this.addressTransactions = from(this.apiService.getTransactionsForAddress(this.address, event.page));
   }
 
   public isFrom(address: string): boolean {

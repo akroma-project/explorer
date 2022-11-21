@@ -34,6 +34,8 @@ import { HomeEcosystemComponent } from './components/home-ecosystem/home-ecosyst
 import { HomeCommunityComponent } from './components/home-community/home-community.component';
 import { ContractsComponent } from './pages/contracts/contracts.component';
 import { ContractsTableComponent } from './components/contracts-table/contracts-table.component';
+import { ChecksumPipe } from './pipes/checksum';
+import { TrimAddressPipe } from './pipes/trim';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { ContractsTableComponent } from './components/contracts-table/contracts-
     // pipes
     UnixTimestampToDatePipe,
     WeiToAkaPipe,
+    TrimAddressPipe,
+    ChecksumPipe,
     HexToAsciiPipe,
     HomeNetworkComponent,
     HomePlatformComponent,
