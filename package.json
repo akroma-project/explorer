@@ -28,7 +28,6 @@
     "core-js": "^2.5.4",
     "ethers": "^5.5.2",
     "lodash": "^4.17.21",
-    "ngx-bootstrap": "^8.0.0",
     "rxjs": "~6.6.7",
     "typesafe-web3": "0.0.14",
     "zone.js": "~0.11.4"
