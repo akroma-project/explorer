@@ -58,6 +58,16 @@ export class ApiService {
       );
   }
 
+  public getTransactionsForAddress(address: string, page: number = 0): Observable<Transaction[]> {
+    return this.http
+      .get<Transaction[]>(
+        `${environment.api}/addresses/${address}/transactions/${page}`
+      ).pipe(
+        timeout(360000),
+        catchError(error => this.handleError('api.get.tx.latest', error))
+      );
+  }
+
   private handleError(source: string, error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
